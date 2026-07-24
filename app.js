@@ -419,13 +419,13 @@ function header() {
       <div class="shell nav-shell">
         ${routeLink('home', '<span class="brand"><img src="assets/logo.png" width="1163" height="257" alt="AI Living Labs Foundation" /></span>', 'brand-link')}
         <nav class="desktop-nav" aria-label="Primary navigation">${primary}</nav>
-        <button class="button button-primary signin-button" type="button" data-static-action aria-disabled="true">Sign In / Register</button>
+        <a class="button button-primary signin-button" href="signin.html">Sign In / Register</a>
         <button class="menu-button" type="button" data-action="menu" aria-expanded="${state.menuOpen}" aria-controls="mobile-navigation">
           <span class="visually-hidden">${state.menuOpen ? 'Close' : 'Open'} navigation</span>${icon(state.menuOpen ? 'close' : 'menu')}
         </button>
       </div>
       <nav id="mobile-navigation" class="mobile-nav ${state.menuOpen ? 'open' : ''}" aria-label="Mobile navigation" aria-hidden="${!state.menuOpen}" ${state.menuOpen ? '' : 'inert'}>
-        <div class="mobile-nav-inner">${primary}<button class="button button-primary" type="button" data-static-action aria-disabled="true">Sign In / Register</button></div>
+        <div class="mobile-nav-inner">${primary}<a class="button button-primary" href="signin.html">Sign In / Register</a></div>
       </nav>
     </header>
     <button class="menu-backdrop mobile-nav-backdrop ${state.menuOpen ? 'open' : ''}" type="button" data-action="menu-close" tabindex="-1" aria-hidden="true" aria-label="Close navigation"></button>`;
