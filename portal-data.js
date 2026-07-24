@@ -72,7 +72,7 @@
     {
       name: "AILL-Amaravati-01",
       id: "AILL-AP-2401",
-      version: "1.28.4",
+      version: "4.15",
       location: "Amaravati, AP",
       project: "Living Labs",
       status: "Running",
@@ -84,7 +84,7 @@
     {
       name: "AILL-Visakhapatnam-02",
       id: "AILL-AP-2402",
-      version: "1.28.4",
+      version: "4.16",
       location: "Visakhapatnam, AP",
       project: "Innovation",
       status: "Running",
@@ -96,7 +96,7 @@
     {
       name: "AILL-Tirupati-03",
       id: "AILL-AP-2403",
-      version: "1.28.4",
+      version: "4.15",
       location: "Tirupati, AP",
       project: "Research",
       status: "Running",
@@ -108,7 +108,7 @@
     {
       name: "AILL-Anantapur-04",
       id: "AILL-AP-2404",
-      version: "1.28.4",
+      version: "4.16",
       location: "Anantapur, AP",
       project: "Skilling",
       status: "Maintenance",
@@ -122,6 +122,30 @@
   window.PortalData = Object.freeze({
     tracks,
     clusters,
+    clusterSetup: {
+      locations: [
+        "Amaravati, Andhra Pradesh",
+        "Visakhapatnam, Andhra Pradesh",
+        "Vijayawada, Andhra Pradesh",
+        "Tirupati, Andhra Pradesh"
+      ],
+      versions: ["4.15", "4.16"],
+      networks: [
+        "main_network1 (192.168.0.0/24)",
+        "network45 (192.168.0.0/24)",
+        "network22 (192.168.0.0/24)",
+        "network89 (192.168.0.0/24)",
+        "network4 (192.168.0.0/24)"
+      ],
+      sshKeys: ["Test_Nxt_54236467", "Demo_54236467"],
+      presets: [
+        { id: "standard", name: "Standard", vcpu: 2, ram: 64, storage: 120 },
+        { id: "performance", name: "Performance", vcpu: 4, ram: 128, storage: 240 },
+        { id: "intensive", name: "Compute intensive", vcpu: 8, ram: 256, storage: 480 }
+      ],
+      available: { vcpu: 80, ram: 1200, internet: 500, storage: 3000, publicIPv4: 50 },
+      managedMonthly: 500
+    },
     resources: [
       { label: "vCPU", unit: "Units", allocated: 406, available: 197, color: "#1e56f5" },
       { label: "RAM", unit: "GB", allocated: 768, available: 384, color: "#5635ef" },

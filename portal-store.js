@@ -3,12 +3,16 @@
 
   const SESSION_KEY = "aill.portal.session.v1";
   const PROFILE_KEY = "aill.portal.profile.v1";
+  const CLUSTER_DRAFT_KEY = "aill.portal.clusterDraft.v1";
+  const CREATED_CLUSTERS_KEY = "aill.portal.createdClusters.v1";
   const allowedTrackIds = new Set(["innovate", "build", "compute", "data"]);
   const allowedPages = new Set([
     "dashboard.html",
     "tracks.html",
     "track.html",
     "usage.html",
+    "cluster-create.html",
+    "cluster-detail.html",
     "billing.html",
     "profile.html",
     "support.html"
@@ -86,6 +90,37 @@
     return clean;
   }
 
+  function getClusterDraft() {
+    const saved = safeParse(activeStorage().getItem(CLUSTER_DRAFT_KEY));
+    return saved && typeof saved === "object" && !Array.isArray(saved) ? saved : {};
+  }
+
+  function saveClusterDraft(draft) {
+    const clean = draft && typeof draft === "object" && !Array.isArray(draft) ? draft : {};
+    activeStorage().setItem(CLUSTER_DRAFT_KEY, JSON.stringify(clean));
+    return clean;
+  }
+
+  function clearClusterDraft() {
+    sessionStorage.removeItem(CLUSTER_DRAFT_KEY);
+    localStorage.removeItem(CLUSTER_DRAFT_KEY);
+  }
+
+  function getCreatedClusters() {
+    const saved = safeParse(activeStorage().getItem(CREATED_CLUSTERS_KEY));
+    return Array.isArray(saved) ? saved.filter((cluster) => cluster && typeof cluster === "object") : [];
+  }
+
+  function addCreatedCluster(cluster) {
+    const clusters = getCreatedClusters();
+    if (!cluster || typeof cluster !== "object" || !cluster.id) return null;
+    const existingIndex = clusters.findIndex((item) => item.id === cluster.id);
+    if (existingIndex >= 0) clusters[existingIndex] = cluster;
+    else clusters.unshift(cluster);
+    activeStorage().setItem(CREATED_CLUSTERS_KEY, JSON.stringify(clusters.slice(0, 50)));
+    return cluster;
+  }
+
   function safeReturnTo(raw) {
     if (!raw) return "dashboard.html";
     let target;
@@ -100,6 +135,10 @@
       const trackId = target.searchParams.get("id");
       return allowedTrackIds.has(trackId) ? `track.html?id=${encodeURIComponent(trackId)}` : "tracks.html";
     }
+    if (candidate === "cluster-detail.html") {
+      const clusterId = String(target.searchParams.get("id") || "").trim();
+      return clusterId ? `cluster-detail.html?id=${encodeURIComponent(clusterId)}` : "usage.html";
+    }
     return candidate;
   }
 
@@ -109,6 +148,11 @@
     endSession,
     getProfile,
     saveProfile,
+    getClusterDraft,
+    saveClusterDraft,
+    clearClusterDraft,
+    getCreatedClusters,
+    addCreatedCluster,
     safeReturnTo
   });
 })();

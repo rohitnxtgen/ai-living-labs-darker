@@ -21,6 +21,8 @@ This is a true multi-page static website built without React, Angular, Vue, Node
 - `tracks.html` — Proposed four-track pathway
 - `track.html` — Reusable track-detail page
 - `usage.html` — Sample infrastructure and cluster usage
+- `cluster-create.html` — Four-step OpenShift cluster project, setup, review and provisioning flow
+- `cluster-detail.html` — Cluster configuration, utilization and provisioning detail
 - `billing.html` — Sample plan, costs and invoice history
 - `profile.html` — Session profile
 - `support.html` — Preview support form
@@ -37,7 +39,7 @@ Shared files:
 
 ## Portal preview notice
 
-The portal is a static review prototype. Sign in accepts a valid email format and an eight-character password to create a local demo session; passwords are never stored or sent. Track progress, clusters, resource usage, costs and invoices are explicitly labelled sample data. Secure production authentication, authorization, live infrastructure telemetry and real billing require backend services.
+The portal is a static review prototype. Sign in accepts a valid email format and an eight-character password to create a local demo session; passwords are never stored or sent. The cluster flow saves drafts and newly created Provisioning records only in browser storage, and stores an SSH key label rather than private key material. The managed add-on checkout and proforma invoice are preview-only and never process payment. Track progress, seed clusters, resource usage, costs and invoices are explicitly labelled sample data. Secure production authentication, authorization, cluster APIs, live infrastructure telemetry and real billing require backend services.
 
 ## Quick preview
 
@@ -57,6 +59,6 @@ http://localhost:8000/index.html
 
 ## Deployment
 
-Upload the complete contents of this folder to the web root. Keep all 18 HTML files, the shared CSS and JavaScript files, and `assets/` together with the same relative structure.
+Upload the complete contents of this folder to the web root. Keep all 20 HTML files, the shared CSS and JavaScript files, and `assets/` together with the same relative structure.
 
 No install command, framework runtime, build process, Git workflow, or server rewrite is required. Each page can be opened or refreshed directly through its own `.html` URL.
